@@ -194,6 +194,7 @@
             this.button_equal.TabIndex = 11;
             this.button_equal.Text = "=";
             this.button_equal.UseVisualStyleBackColor = true;
+            this.button_equal.Click += new System.EventHandler(this.button_equal_Click);
             // 
             // button_sum
             // 

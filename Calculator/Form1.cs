@@ -14,6 +14,7 @@ namespace Calculator
         private bool _pointEntered = false;
         private bool _zeroBeforeDot = false;
         private int _wasAnOperation = 0;
+        private int _lastOperator = 0;
 
         private void ChangeOfNumber()
         {
@@ -169,6 +170,7 @@ namespace Calculator
                 _activeNum = null;
             }
             _wasAnOperation++;
+            _lastOperator = 0;
         }
 
         private void button_sub_Click(object sender, EventArgs e)
@@ -183,6 +185,7 @@ namespace Calculator
                 _activeNum = null;
             }
             _wasAnOperation++;
+            _lastOperator = 1;
         }
 
         private void button_multi_Click(object sender, EventArgs e)
@@ -197,6 +200,7 @@ namespace Calculator
                 _activeNum = null;
             }
             _wasAnOperation++;
+            _lastOperator = 2;
         }
 
         private void button_div_Click(object sender, EventArgs e)
@@ -211,6 +215,27 @@ namespace Calculator
                 _activeNum = null;
             }
             _wasAnOperation++;
+            _lastOperator = 3;
+        }
+
+        private void button_equal_Click(object sender, EventArgs e)
+        {
+            switch (_lastOperator) 
+            {
+                case 0:
+                    button_sum_Click(button_sum, null);
+                    break;
+                case 1:
+                    button_sub_Click(button_sum, null);
+                    break;
+                case 2:
+                    button_multi_Click(button_sum, null);
+                    break;
+                case 3:
+                    button_div_Click(button_sum, null);
+                    break;
+            }
+            _lastOperator = -1;
         }
 
         private void button_clear_Click(object sender, EventArgs e)
@@ -220,6 +245,7 @@ namespace Calculator
             _pointEntered = false;
             _zeroBeforeDot = false;
             _wasAnOperation = 0;
+            _lastOperator = -1;
             PrintNum();
         }
 
